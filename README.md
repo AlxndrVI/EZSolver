@@ -1,0 +1,2 @@
+# EZSolver
+Fast sudoku solver.
