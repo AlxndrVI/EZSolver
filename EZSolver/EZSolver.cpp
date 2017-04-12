@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -54,7 +54,7 @@ void showboard(int x, int y, int m[mxmymxmy])
 //		int offset = (o / mxmy)*mxmy + i;
 //		activemask = activemask | board[offset] & comparemask;
 //		singlemask = (board[offset] ^ comparemask) &~activemask;
-//		comparemask = comparemask | board[offset]; //сохраняем все биты
+//		comparemask = comparemask | board[offset]; //СЃРѕС…СЂР°РЅСЏРµРј РІСЃРµ Р±РёС‚С‹
 //	}
 //
 //	for (int i = 0; i < mxmy; ++i)
@@ -75,7 +75,7 @@ void showboard(int x, int y, int m[mxmymxmy])
 //		int offset = i*mxmy + o%mxmy;
 //		activemask = activemask | board[offset] & comparemask;
 //		singlemask = (board[offset] ^ comparemask) &~activemask;
-//		comparemask = comparemask | board[offset]; //сохраняем все биты
+//		comparemask = comparemask | board[offset]; //СЃРѕС…СЂР°РЅСЏРµРј РІСЃРµ Р±РёС‚С‹
 //	}
 //
 //	for (int i = 0; i < mxmy; ++i)
@@ -96,7 +96,7 @@ void showboard(int x, int y, int m[mxmymxmy])
 //		int offset = ((o / mxmy) / my) * my * mxmy + ((o % mxmy) / mx) * mx + i % mx + (i / mx) * mxmy;
 //		activemask = activemask | board[offset] & comparemask;
 //		singlemask = (board[offset] ^ comparemask) &~activemask;
-//		comparemask = comparemask | board[offset]; //сохраняем все биты
+//		comparemask = comparemask | board[offset]; //СЃРѕС…СЂР°РЅСЏРµРј РІСЃРµ Р±РёС‚С‹
 //	}
 //
 //	for (int i = 0; i < mxmy; ++i)
@@ -125,7 +125,7 @@ int MarkHiddenSingles(int board[mxmymxmy])
 			int offset = j*mxmy + i;
 			int val = board[offset];
 			singlemask |= val & comparemask;
-			comparemask |= val; //сохраняем все биты
+			comparemask |= val; //СЃРѕС…СЂР°РЅСЏРµРј РІСЃРµ Р±РёС‚С‹
 		}
 
 
@@ -154,7 +154,7 @@ int MarkHiddenSingles(int board[mxmymxmy])
 			int offset = i*mxmy + j;
 			int val = board[offset];
 			singlemask |= val & comparemask;
-			comparemask |= val; //сохраняем все биты
+			comparemask |= val; //СЃРѕС…СЂР°РЅСЏРµРј РІСЃРµ Р±РёС‚С‹
 		}
 
 		//singlemask = mflags &~singlemask;
@@ -183,7 +183,7 @@ int MarkHiddenSingles(int board[mxmymxmy])
 			int offset = block2offset[j + 2 * mxmy][i];
 			int val = board[offset];
 			singlemask |= val & comparemask;
-			comparemask |= val; //сохраняем все биты
+			comparemask |= val; //СЃРѕС…СЂР°РЅСЏРµРј РІСЃРµ Р±РёС‚С‹
 		}
 
 		//singlemask = mflags &~singlemask;
@@ -212,7 +212,7 @@ int EraseMark(int board[mxmymxmy], int offset, int val)
 	for (int i = 0; i < consblocksize; ++i)
 	{
 		//int found = (board[cons[offset][i]] & (~val))&mflags;
-		int found = board[cons[offset][i]] & (val ^ mflags); //xor во время цикла оказывается быстрее.....
+		int found = board[cons[offset][i]] & (val ^ mflags); //xor РІРѕ РІСЂРµРјСЏ С†РёРєР»Р° РѕРєР°Р·С‹РІР°РµС‚СЃСЏ Р±С‹СЃС‚СЂРµРµ.....
 		//int found = board[cons[offset][i]] & val;
 		if (found != board[cons[offset][i]]) // renew variants
 		{
@@ -298,7 +298,7 @@ int EZSolver(int m[mxmy][mxmy], int solution[mxmy][mxmy])
 	//{
 	//	int val = *s;
 	//	int f = 1;
-	//	while (val >>= 1) //из маски получаем цифру
+	//	while (val >>= 1) //РёР· РјР°СЃРєРё РїРѕР»СѓС‡Р°РµРј С†РёС„СЂСѓ
 	//	{
 	//		f++;
 	//	}

@@ -1,4 +1,4 @@
-#include <iostream>
+п»ї#include <iostream>
 #include <chrono>
 #include <ppl.h>
 #include <stdio.h>
@@ -6,6 +6,7 @@
 
 #include "GlobalVars.h"
 #include "EZSolvers.h"
+
 #include "ZhouSolver.h"
 #include "JSolve.h"
 #include "JCZSolve.h"
@@ -56,7 +57,7 @@ void show2(int m[mxmy][mxmy])
 			if (bitcount(val) == 1)
 			{
 				int f = 1;
-				while (val >>= 1) //из маски получаем цифру
+				while (val >>= 1) //РёР· РјР°СЃРєРё РїРѕР»СѓС‡Р°РµРј С†РёС„СЂСѓ
 				{
 					f++;
 				}
@@ -113,15 +114,15 @@ void printflags(int flags)
 
 unsigned __int64 solvertest(int x, int y, int m[mxmy][mxmy], unsigned __int64 Solutions)
 {
-	int xx, yy, n; //val Значение в ячейке, n количество бит в ячейке
+	int xx, yy, n; //val Р—РЅР°С‡РµРЅРёРµ РІ СЏС‡РµР№РєРµ, n РєРѕР»РёС‡РµСЃС‚РІРѕ Р±РёС‚ РІ СЏС‡РµР№РєРµ
 	xx = x; yy = y;
 
 	show3(x, y, m);
 
-	if (y == mxmy) //дошли до конца
+	if (y == mxmy) //РґРѕС€Р»Рё РґРѕ РєРѕРЅС†Р°
 	{
-		if (Solutions == 0) memcpy(solution, m, mxmymxmy*sizeof(int)); //нас интересует только первое решение
-		return ++Solutions; // добавим в копилочку
+		if (Solutions == 0) memcpy(solution, m, mxmymxmy*sizeof(int)); //РЅР°СЃ РёРЅС‚РµСЂРµСЃСѓРµС‚ С‚РѕР»СЊРєРѕ РїРµСЂРІРѕРµ СЂРµС€РµРЅРёРµ
+		return ++Solutions; // РґРѕР±Р°РІРёРј РІ РєРѕРїРёР»РѕС‡РєСѓ
 	}
 
 	n = bitcount(m[y][x]);
@@ -381,7 +382,7 @@ unsigned __int64 newsolver()
 		*t = mflags;
 	}
 
-	//Заполняем nm
+	//Р—Р°РїРѕР»РЅСЏРµРј nm
 	for (int j = 0; j < mxmy; ++j)
 	{
 		for (int i = 0; i < mxmy; ++i)
@@ -494,7 +495,7 @@ unsigned __int64 newsolver()
 	do
 	{
 		oldcount = count;
-		currentblock = &blocknodes[0]; //строки
+		currentblock = &blocknodes[0]; //СЃС‚СЂРѕРєРё
 		while (currentblock)
 		{
 			currentcell = &currentblock->cell;
@@ -509,7 +510,7 @@ unsigned __int64 newsolver()
 			currentblock = currentblock->nextblock;
 		}
 
-		currentblock = &blocknodes[mxmy]; //колонки
+		currentblock = &blocknodes[mxmy]; //РєРѕР»РѕРЅРєРё
 		while (currentblock)
 		{
 			currentcell = &currentblock->cell;
@@ -524,7 +525,7 @@ unsigned __int64 newsolver()
 			currentblock = currentblock->nextblock;
 		}
 
-		currentblock = &blocknodes[2 * mxmy]; //блоки
+		currentblock = &blocknodes[2 * mxmy]; //Р±Р»РѕРєРё
 		while (currentblock)
 		{
 			currentcell = &currentblock->cell;
@@ -540,7 +541,7 @@ unsigned __int64 newsolver()
 		}
 
 
-		//currentblock = &blocknodes[0]; //строки
+		//currentblock = &blocknodes[0]; //СЃС‚СЂРѕРєРё
 		//while (currentblock)
 		//{
 		//	currentcell = &currentblock->cell;
@@ -568,7 +569,7 @@ unsigned __int64 newsolver()
 	{
 		int val = *s;
 		int f = 1;
-		while (val >>= 1) //из маски получаем цифру
+		while (val >>= 1) //РёР· РјР°СЃРєРё РїРѕР»СѓС‡Р°РµРј С†РёС„СЂСѓ
 		{
 			f++;
 		}
@@ -580,7 +581,7 @@ unsigned __int64 newsolver()
 }
 unsigned __int64 solver()
 {
-	//создаем массив с которого начнем считать
+	//СЃРѕР·РґР°РµРј РјР°СЃСЃРёРІ СЃ РєРѕС‚РѕСЂРѕРіРѕ РЅР°С‡РЅРµРј СЃС‡РёС‚Р°С‚СЊ
 	int nm[mxmy][mxmy];
 
 	for (int *t = &nm[0][0], size = mxmymxmy;
@@ -635,7 +636,7 @@ loop:
 			int val;
 			if (bitcount(nm[j][i]) != 1)
 			{
-				//собираем все варианты в строке кроме текущей ячейки
+				//СЃРѕР±РёСЂР°РµРј РІСЃРµ РІР°СЂРёР°РЅС‚С‹ РІ СЃС‚СЂРѕРєРµ РєСЂРѕРјРµ С‚РµРєСѓС‰РµР№ СЏС‡РµР№РєРё
 				val = 0;
 				for (int x = 0; x < mxmy; ++x)
 				{
@@ -644,10 +645,10 @@ loop:
 				}
 
 				val = ~val & mflags;
-				//если после инвертирования флага остался один вариант то тут обязательно скрытая цифра
+				//РµСЃР»Рё РїРѕСЃР»Рµ РёРЅРІРµСЂС‚РёСЂРѕРІР°РЅРёСЏ С„Р»Р°РіР° РѕСЃС‚Р°Р»СЃСЏ РѕРґРёРЅ РІР°СЂРёР°РЅС‚ С‚Рѕ С‚СѓС‚ РѕР±СЏР·Р°С‚РµР»СЊРЅРѕ СЃРєСЂС‹С‚Р°СЏ С†РёС„СЂР°
 				if (bitcount(val) == 1)
 				{
-					//по горизонтали уже найдена цифра, осталось обновить колонку и блок
+					//РїРѕ РіРѕСЂРёР·РѕРЅС‚Р°Р»Рё СѓР¶Рµ РЅР°Р№РґРµРЅР° С†РёС„СЂР°, РѕСЃС‚Р°Р»РѕСЃСЊ РѕР±РЅРѕРІРёС‚СЊ РєРѕР»РѕРЅРєСѓ Рё Р±Р»РѕРє
 					for (int y = 0; y < mxmy; ++y)
 					{
 						nm[y][i] &= ~val;
@@ -660,9 +661,9 @@ loop:
 							nm[y][x] &= ~val;
 						}
 					}
-					//что бы не обходить ячейку после удаления флага восстанавливаем значение исходной ячейки
+					//С‡С‚Рѕ Р±С‹ РЅРµ РѕР±С…РѕРґРёС‚СЊ СЏС‡РµР№РєСѓ РїРѕСЃР»Рµ СѓРґР°Р»РµРЅРёСЏ С„Р»Р°РіР° РІРѕСЃСЃС‚Р°РЅР°РІР»РёРІР°РµРј Р·РЅР°С‡РµРЅРёРµ РёСЃС…РѕРґРЅРѕР№ СЏС‡РµР№РєРё
 					nm[j][i] = val;
-					//можем переходить к следующей ячейке, нам не требуется проверять заного.
+					//РјРѕР¶РµРј РїРµСЂРµС…РѕРґРёС‚СЊ Рє СЃР»РµРґСѓСЋС‰РµР№ СЏС‡РµР№РєРµ, РЅР°Рј РЅРµ С‚СЂРµР±СѓРµС‚СЃСЏ РїСЂРѕРІРµСЂСЏС‚СЊ Р·Р°РЅРѕРіРѕ.
 					continue;
 					//goto exit;
 				}
@@ -768,7 +769,7 @@ loop:
 	{
 		int val = *s;
 		int f = 1;
-		while (val >>= 1) //из маски получаем цифру
+		while (val >>= 1) //РёР· РјР°СЃРєРё РїРѕР»СѓС‡Р°РµРј С†РёС„СЂСѓ
 		{
 			f++;
 		}
@@ -790,13 +791,13 @@ unsigned __int64 BacktrackPreflagsSeq(int x, int y, int rowFlags[mxmy], int bloc
 	xx = x; yy = y; //xx, yy - old coordinates, x, y - will be new
 	flags = 0;
 
-	if (y == mxmy) //дошли до конца
+	if (y == mxmy) //РґРѕС€Р»Рё РґРѕ РєРѕРЅС†Р°
 	{
-		if (Solutions == 0) memcpy(solution, m, mxmymxmy*sizeof(int)); //нас интересует только первое решение
-		return ++Solutions; // добавим в копилочку
+		if (Solutions == 0) memcpy(solution, m, mxmymxmy*sizeof(int)); //РЅР°СЃ РёРЅС‚РµСЂРµСЃСѓРµС‚ С‚РѕР»СЊРєРѕ РїРµСЂРІРѕРµ СЂРµС€РµРЅРёРµ
+		return ++Solutions; // РґРѕР±Р°РІРёРј РІ РєРѕРїРёР»РѕС‡РєСѓ
 	}
 
-	//если есть кандидаты то ведем поиск глубже
+	//РµСЃР»Рё РµСЃС‚СЊ РєР°РЅРґРёРґР°С‚С‹ С‚Рѕ РІРµРґРµРј РїРѕРёСЃРє РіР»СѓР±Р¶Рµ
 
 	flags = rowFlags[yy] | blockFlags[yy / my][xx / mx] | colFlags[xx];
 
@@ -843,13 +844,13 @@ unsigned __int64 BacktrackPreflagsSeq_1st(int x, int y, int rowFlags[mxmy], int 
 	xx = x; yy = y; //xx, yy - old coordinates, x, y - will be new
 	flags = 0;
 
-	if (y == mxmy) //дошли до конца
+	if (y == mxmy) //РґРѕС€Р»Рё РґРѕ РєРѕРЅС†Р°
 	{
-		if (Solutions == 0) memcpy(solution, m, mxmymxmy*sizeof(int)); //нас интересует только первое решение
-		return ++Solutions; // добавим в копилочку
+		if (Solutions == 0) memcpy(solution, m, mxmymxmy*sizeof(int)); //РЅР°СЃ РёРЅС‚РµСЂРµСЃСѓРµС‚ С‚РѕР»СЊРєРѕ РїРµСЂРІРѕРµ СЂРµС€РµРЅРёРµ
+		return ++Solutions; // РґРѕР±Р°РІРёРј РІ РєРѕРїРёР»РѕС‡РєСѓ
 	}
 
-	//если есть кандидаты то ведем поиск глубже
+	//РµСЃР»Рё РµСЃС‚СЊ РєР°РЅРґРёРґР°С‚С‹ С‚Рѕ РІРµРґРµРј РїРѕРёСЃРє РіР»СѓР±Р¶Рµ
 
 	flags = rowFlags[yy] | blockFlags[yy / my][xx / mx] | colFlags[xx];
 
@@ -898,13 +899,13 @@ unsigned __int64 BacktrackSeq(int x, int y, int m[mxmy][mxmy], unsigned __int64 
 	int flags;
 	xx = x; yy = y; flags = 0;
 
-	if (y == mxmy) //дошли до конца
+	if (y == mxmy) //РґРѕС€Р»Рё РґРѕ РєРѕРЅС†Р°
 	{
-		if (Solutions == 0) memcpy(solution, m, mxmymxmy*sizeof(int)); //нас интересует только первое решение
+		if (Solutions == 0) memcpy(solution, m, mxmymxmy*sizeof(int)); //РЅР°СЃ РёРЅС‚РµСЂРµСЃСѓРµС‚ С‚РѕР»СЊРєРѕ РїРµСЂРІРѕРµ СЂРµС€РµРЅРёРµ
 		return ++Solutions;
 	}
 
-	// Сохраняем имеющиеся цифры в строке, столбце и блоке.
+	// РЎРѕС…СЂР°РЅСЏРµРј РёРјРµСЋС‰РёРµСЃСЏ С†РёС„СЂС‹ РІ СЃС‚СЂРѕРєРµ, СЃС‚РѕР»Р±С†Рµ Рё Р±Р»РѕРєРµ.
 	for (int i = 0; i < mxmy; ++i)
 	{
 		flags |= (1 << m[y][i]);
@@ -951,25 +952,25 @@ unsigned __int64 BacktrackSeq(int x, int y, int m[mxmy][mxmy], unsigned __int64 
 
 unsigned __int64 Backtracking1()
 {
-	//создаем массив с которого начнем считать
+	//СЃРѕР·РґР°РµРј РјР°СЃСЃРёРІ СЃ РєРѕС‚РѕСЂРѕРіРѕ РЅР°С‡РЅРµРј СЃС‡РёС‚Р°С‚СЊ
 	int nm[mxmy][mxmy];
 
 	memcpy(nm, m, mxmymxmy*sizeof(int));
 
 
-	//запускаем рекурсию поиска вариантов.
+	//Р·Р°РїСѓСЃРєР°РµРј СЂРµРєСѓСЂСЃРёСЋ РїРѕРёСЃРєР° РІР°СЂРёР°РЅС‚РѕРІ.
 
 	return BacktrackSeq(0, 0, nm, 0);
 }
 
 unsigned __int64 Backtracking2()
 {
-	//создаем массив с которого начнем считать
+	//СЃРѕР·РґР°РµРј РјР°СЃСЃРёРІ СЃ РєРѕС‚РѕСЂРѕРіРѕ РЅР°С‡РЅРµРј СЃС‡РёС‚Р°С‚СЊ
 	int nm[mxmy][mxmy];
 
 	memcpy(nm, m, mxmymxmy*sizeof(int));
 
-	//заполняем маски для каждой строки, колонки и блоков.
+	//Р·Р°РїРѕР»РЅСЏРµРј РјР°СЃРєРё РґР»СЏ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРё, РєРѕР»РѕРЅРєРё Рё Р±Р»РѕРєРѕРІ.
 	int blockFlags[mx][my];
 	int colFlags[mxmy];
 	int rowFlags[mxmy];
@@ -988,19 +989,19 @@ unsigned __int64 Backtracking2()
 		}
 	}
 
-	//запускаем рекурсию поиска вариантов.
+	//Р·Р°РїСѓСЃРєР°РµРј СЂРµРєСѓСЂСЃРёСЋ РїРѕРёСЃРєР° РІР°СЂРёР°РЅС‚РѕРІ.
 
 	return BacktrackPreflagsSeq(0, 0, rowFlags, blockFlags, colFlags, nm, 0);
 }
 
 unsigned __int64 Backtracking2_1st()
 {
-	//создаем массив с которого начнем считать
+	//СЃРѕР·РґР°РµРј РјР°СЃСЃРёРІ СЃ РєРѕС‚РѕСЂРѕРіРѕ РЅР°С‡РЅРµРј СЃС‡РёС‚Р°С‚СЊ
 	int nm[mxmy][mxmy];
 
 	memcpy(nm, m, mxmymxmy*sizeof(int));
 
-	//заполняем маски для каждой строки, колонки и блоков.
+	//Р·Р°РїРѕР»РЅСЏРµРј РјР°СЃРєРё РґР»СЏ РєР°Р¶РґРѕР№ СЃС‚СЂРѕРєРё, РєРѕР»РѕРЅРєРё Рё Р±Р»РѕРєРѕРІ.
 	int blockFlags[mx][my];
 	int colFlags[mxmy];
 	int rowFlags[mxmy];
@@ -1019,7 +1020,7 @@ unsigned __int64 Backtracking2_1st()
 		}
 	}
 
-	//запускаем рекурсию поиска вариантов.
+	//Р·Р°РїСѓСЃРєР°РµРј СЂРµРєСѓСЂСЃРёСЋ РїРѕРёСЃРєР° РІР°СЂРёР°РЅС‚РѕРІ.
 
 	return BacktrackPreflagsSeq_1st(0, 0, rowFlags, blockFlags, colFlags, nm, 0);
 }
@@ -1405,22 +1406,15 @@ void main()
 	start3(EZSolver); //	Elapsed time: 	2.94824 seconds.
 
 	std::cout << "..EZSolver2.." << std::endl;
-	start3(EZSolver2); //	Elapsed time: 	3.51758 seconds.
-
-	std::cout << "..EZSolver3.." << std::endl;
-	start3(EZSolver3); //	Elapsed time: 	3.58594 seconds.
-
-	std::cout << "..EZSolver4.." << std::endl;
-	start3(EZSolver4); //	Elapsed time: 	3.51563 seconds.
+	start3(EZSolver2); //	Elapsed time: 	3.51563 seconds.
 
 
+	//std::cout << "..JSolve.." << std::endl;
+	//start2(JSolve);//	Elapsed time: 	4.08203 seconds.
 
-	std::cout << "..JSolve.." << std::endl;
-	start2(JSolve);//	Elapsed time: 	4.08203 seconds.
+	//std::cout << "..ZhouSolver.." << std::endl;
+	//start2(ZhouSolver);//	Elapsed time: 	2.87305 seconds.
 
-	std::cout << "..ZhouSolver.." << std::endl;
-	start2(ZhouSolver);//	Elapsed time: 	2.87305 seconds.
-
-	std::cout << "..JCZSolver.." << std::endl;
-	start2(JCZSolver); //	Elapsed time: 	2.36719 seconds.
+	//std::cout << "..JCZSolver.." << std::endl;
+	//start2(JCZSolver); //	Elapsed time: 	2.36719 seconds.
 }
